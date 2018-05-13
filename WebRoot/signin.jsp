@@ -31,9 +31,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     %>
     
     <% 
-         Connection connection=null;
-         
-          connection=DBFactory.getConnection();
+    String url="jdbc:mysql://localhost:3306/oneday";
+    String driver="com.mysql.jdbc.Driver";
+    Connection connection=null;
+  
+	Class.forName(driver);
+	connection=DriverManager.getConnection(url,"root","123456");
+       
        	  String sql="insert into users values(?,?,?,?)";
        	  PreparedStatement pstmt =connection.prepareStatement(sql);
       	  pstmt.setString(1,userName);
