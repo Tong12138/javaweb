@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" import="java.sql.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -24,14 +24,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <%  
+       int tag=0;
     	String userName=request.getParameter("form-first-name");
     	String password=request.getParameter("password");
-    	if(userName.equals("yyt")&&password.equals("123456"))
-    	{
-     %>
-     <jsp:forward page="MyHtml.html"></jsp:forward>
-     <% } else { %>
-    <jsp:forward page="../SignUp.html"></jsp:forward>
-    <% } %>
+    	
+    	try{
+    	String url="jdbc:mysql://localhost:3306/oneday";
+    	String driver="com.mysql.jdbc.Driver";
+    	Connection connection=null;
+  
+		Class.forName(driver);
+		connection=DriverManager.getConnection(url,"root","123456");
+	    Statement statement=null;
+	    statement=connection.createStatement();
+	    String sql="select * from users";
+	    ResultSet rs=statement.executeQuery(sql);
+	 %>
+	 <%
+	  String comName=null;
+	  String compassword=null;
+	    while(rs.next()){
+	    comName =rs.getString("name");
+	    compassword=rs.getString("password");
+	    if(userName.equals(comName)&&password.equals(compassword))
+	    {tag=1;
+	      break;
+	      }
+	    }
+	    if(tag==1)
+	    {%>
+	     out.print("log successful"+"<br>");
+	        <jsp:forward page="MyHtml.html"></jsp:forward>
+	    <%
+	  
+	    }
+	    else
+	    {%>
+	     out.print("log fail"+"<br>");
+	      <jsp:forward page="SignUp.html"></jsp:forward>
+<%
+} connection.close();
+}catch(Exception e){
+e.printStackTrace();
+}
+	  %>
   </body>
 </html>

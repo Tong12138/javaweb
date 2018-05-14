@@ -37,7 +37,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
 	Class.forName(driver);
 	connection=DriverManager.getConnection(url,"root","123456");
-       
+        
+         
        	  String sql="insert into users values(?,?,?,?)";
        	  PreparedStatement pstmt =connection.prepareStatement(sql);
       	  pstmt.setString(1,userName);
@@ -46,6 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	  pstmt.setString(4,about);
       	  pstmt.executeUpdate();
       	  pstmt.close();
+      	  connection.close();
    %> 
       <a herf="show.jsp"> display the data</a>
       <%
