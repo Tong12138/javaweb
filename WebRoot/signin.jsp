@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" import="java.sql.*"  pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" import="java.sql.*" import="com.bean.DBFactory" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -31,14 +31,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     %>
     
     <% 
-    String url="jdbc:mysql://localhost:3306/oneday";
-    String driver="com.mysql.jdbc.Driver";
     Connection connection=null;
-  
-	Class.forName(driver);
-	connection=DriverManager.getConnection(url,"root","123456");
-        
-         
+	connection=DBFactory.getConnection();
+    int tag=0;
+      String comsql="select name from users";
+       Statement statement=null;
+	    statement=connection.createStatement();
+	  ResultSet rs=statement.executeQuery(comsql);
+	  String comName=null;
+	    while(rs.next()){
+	    comName =rs.getString("name");
+	    if(userName.equals(comName))
+	    {tag=1;
+	      break;
+	      }
+	    }
+	    if(tag==1)
+	    {%>
+	     connection.close();
+	     
+	     out.print("name repeat!!!"+"<br>");
+	        <jsp:forward page="SignUp.html"></jsp:forward>
+	    <%
+	  
+	    }
+	    else
+	    {         
        	  String sql="insert into users values(?,?,?,?)";
        	  PreparedStatement pstmt =connection.prepareStatement(sql);
       	  pstmt.setString(1,userName);
@@ -46,14 +64,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	  pstmt.setString(3,email);
       	  pstmt.setString(4,about);
       	  pstmt.executeUpdate();
-      	  pstmt.close();
-      	  connection.close();
+          DBFactory.closeConnection(rs, pstmt, null, connection);
    %> 
       <a herf="show.jsp"> display the data</a>
       <%
       out.print("add successfully"+"<br>");
       out.println("user:"+userName+"<br");
        %>
+       <%} %>
 
   </body>
 </html>
