@@ -13,10 +13,21 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+
+        
 
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
-
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/add_list.js"></script>
+    
+    
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+  
 
   </head>
 
@@ -129,6 +140,9 @@
         <br><br>
         <input type="checkbox" name="list1"><label>UR list 4</label>
         </p>
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Add New</button>
+        
+        
         </div>
           
      </div>
@@ -188,6 +202,62 @@
       </div>
       <!-- /.container -->
     </footer>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					Add what u want to add
+				</h4>
+			</div>
+			<div class="modal-body">
+				tap here
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">close
+				</button>
+				<button type="button" class="btn btn-primary">
+					submit
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+    <!-- MODAL2 -->
+        <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="modal-add-label" aria-hidden="true">
+        	<div class="modal-dialog">
+        		<div class="modal-content">
+        			
+        			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">
+        					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        				</button>
+        				<h3 class="modal-title" id="modal-register-label">Sign in now</h3>
+        				<p>Fill in the form below to get instant access:</p>
+        			</div>
+        			
+        			<div class="modal-body">
+        				
+	                    <form role="form" action="signup.jsp" method="post" class="registration-form">
+	                    	<div class="form-group">
+	                    		<label class="sr-only" for="form-first-name">Name</label>
+	                        	<input type="text" name="form-first-name" placeholder="UserName..." class="form-first-name form-control" id="form-first-name">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label class="sr-only" for="password">Password</label>
+	                        	<input type="text" name="password" placeholder="password..." class="form-last-name form-control" id="form-last-name">
+	                        </div>
+	                        
+	                        <button type="submit" class="btn">Sign me up!</button>
+	                    </form>
+	                    
+        			</div>
+        			
+        		</div>
+        	</div></div>
     
     
 
@@ -196,7 +266,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-	
   </body>
 
 </html>
