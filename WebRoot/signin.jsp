@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" import="java.sql.*" import="com.bean.DBFactory" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" import="com.bean.DBFactory" import="java.sql.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'signin.jsp' starting page</title>
+    <title>Sign in</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,55 +23,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <% 
+    <%  
+       int tag=0;
     	String userName=request.getParameter("form-first-name");
     	String password=request.getParameter("password");
-    	String email=request.getParameter("form-email");
-    	String about=request.getParameter("form-about-yourself");
-    %>
-    
-    <% 
-    Connection connection=null;
-	connection=DBFactory.getConnection();
-    int tag=0;
-      String comsql="select name from users";
-       Statement statement=null;
-	    statement=connection.createStatement();
-	  ResultSet rs=statement.executeQuery(comsql);
+              Object a=request.getAttribute("form-first-name");
+              
+    	Connection con=DBFactory.getConnection();
+    	
+    	String sql="select * from users";
+    	Statement statement=con.createStatement();
+	    ResultSet rs=statement.executeQuery(sql);
+	 %> 
+	 <%
 	  String comName=null;
-	    while(rs.next()){
+	  String compassword=null; 
+	    while(rs.next()){ 
 	    comName =rs.getString("name");
-	    if(userName.equals(comName))
-	    {tag=1;
-	      break;
-	      }
-	    }
-	    if(tag==1)
-	    {%>
-	     connection.close();
-	     
-	     out.print("name repeat!!!"+"<br>");
-	        <jsp:forward page="SignUp.html"></jsp:forward>
-	    <%
+ 	    compassword=rs.getString("password"); 
+ 	    if(userName.equals(comName)&&password.equals(compassword)) 
+ 	    {tag=1; 
+	      break; 
+      } 
+	    } 
+	    if(tag==1) 
+	    {  
+	   
+	     session.setAttribute("name",userName);
+	     session.removeAttribute("lists");
+	     out.print("log successful"+"<br>"); 
+	    out.print((String)session.getAttribute("name"));
+	      %>
+	      <jsp:forward page="MyHtml.html"></jsp:forward>
+<%  
+	    
 	  
-	    }
-	    else
-	    {         
-       	  String sql="insert into users values(?,?,?,?)";
-       	  PreparedStatement pstmt =connection.prepareStatement(sql);
-      	  pstmt.setString(1,userName);
-      	  pstmt.setString(2,password);
-      	  pstmt.setString(3,email);
-      	  pstmt.setString(4,about);
-      	  pstmt.executeUpdate();
-          DBFactory.closeConnection(rs, pstmt, null, connection);
-   %> 
-      <a herf="show.jsp"> display the data</a>
-      <%
-      out.print("add successfully"+"<br>");
-      out.println("user:"+userName+"<br");
-       %>
-       <%} %>
-
+ 	    }
+   else
+	    {
+	     out.print("log fail"+"<br>");
+	     %>
+	      <jsp:forward page="SignUp.html"></jsp:forward>
+<% 
+ } 
+    	DBFactory.closeConnection(rs, null, statement, con);
+    	
+    	%>
   </body>
 </html>
