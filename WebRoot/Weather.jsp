@@ -15,9 +15,6 @@
   </head>  
     
   <body>  
-  <form action="WeatherServlet" method="POST" target="_blank">  
-    <input type="text" id="city" name="city"/>  
-    <input type="submit" value="查询"/>  
-    </form>  
+  
   </body>  
 </html>  
