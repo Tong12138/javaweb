@@ -1,31 +1,8 @@
 <%@ page language="java" import="java.util.*,java.sql.*" import="com.bean.*" pageEncoding="ISO-8859-1"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'addlist.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
-  </head>
-  
-  <body>
-    <%
-       String content=request.getParameter("textyyt");
-       String name=(String)session.getAttribute("name");
+<% 
+   String content=request.getParameter("text");
+  // out.print("content");
+    String name=(String)session.getAttribute("name");
        //Connection con=null;
       //con=DBFactory.getConnection();
       //Statement 
@@ -36,15 +13,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           arryList=new ArrayList<Lists>();
           arryList.add(list);
           session.setAttribute("lists",arryList);
-          response.sendRedirect("test.jsp");
+         // response.sendRedirect("test.jsp");
        }
        else
        {
             arryList=(ArrayList<Lists>)session.getAttribute("lists");
             arryList.add(list);
                  session.setAttribute("lists",arryList);
-                  response.sendRedirect("test.jsp");
+              //    response.sendRedirect("test.jsp");
        }
-     %>  
-  </body>
-</html>
+       
+       
+        ArrayList<Lists> temp=(ArrayList) session.getAttribute("lists");
+      if(temp==null||temp.size()==0)
+      out.print("shayemeiyou ");
+      else
+      {
+  
+      Iterator it=temp.iterator();
+      for(int i=0;i<temp.size();i++)
+      {
+         Lists lis=(Lists)it.next();
+         out.print(lis.getContent());
+      
+      }
+       }    
+%>
+
+
