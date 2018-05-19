@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*,java.sql.*,com.bean.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <head>
 
-    <meta charset="utf-8">
+ 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>Modern Business - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/community_css.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
@@ -84,14 +84,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
       <!-- Image Header -->
       <img class="img-fluid rounded mb-4" src="http://placehold.it/1200x300" alt="">
+<%  
 
+Connection con=DBFactory.getConnection();
+    	
+    	String sql="select * from notes";
+    	Statement statement=con.createStatement();
+	    ResultSet rs=statement.executeQuery(sql);
+	    int size = 6;
+	    String[] user_essey_contect = new String[size];
+		for (int i = 0; i < size; i++) {
+    		 user_essey_contect[i] = rs.getString("content");
+		}
+	     String[] user_essey_name = new String[size];
+		for (int i = 0; i < size; i++) {
+    		 user_essey_name[i] = rs.getString("username");
+		}
+	    
+     
+
+
+ %>
       <!-- Marketing Icons Section -->
       <div class="row">
         <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
+          <div class="card h-50">
+ 
+            <h4 class="card-header">  <%=user_essey_name[0] %></h4>
             <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+         
+              <p class="card-text">   <%=user_essey_contect[0] %></p>
             </div>
             <div class="card-footer">
               <a href="#" class="btn btn-primary">Like</a>
@@ -99,10 +121,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
         </div>
         <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
+          <div class="card h-50">
+            <h4 class="card-header"><%=user_essey_name[1] %></h4>
             <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
+              <p class="card-text"><%=user_essey_contect[1] %></p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Like</a>
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-4 mb-4">
+          <div class="card h-50">
+            <h4 class="card-header"><%=user_essey_name[2] %></h4>
+            <div class="card-body">
+              <p class="card-text"><%=user_essey_contect[2] %></p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Like</a>
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-4 mb-4">
+          <div class="card h-50">
+            <h4 class="card-header"><%=user_essey_name[3] %></h4>
+            <div class="card-body">
+              <p class="card-text"><%=user_essey_contect[3] %></p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Like</a>
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-4 mb-4">
+          <div class="card h-50">
+            <h4 class="card-header"><%=user_essey_name[4] %></h4>
+            <div class="card-body">
+              <p class="card-text"><%=user_essey_contect[4] %></p>
             </div>
             <div class="card-footer">
               <a href="#" class="btn btn-primary">Like</a>
@@ -110,10 +165,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
         </div>
         <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
+          <div class="card h-50">
+            <h4 class="card-header"><%=user_essey_name[5] %></h4>
             <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+              <p class="card-text"><%=user_essey_contect[5] %></p>
             </div>
             <div class="card-footer">
               <a href="#" class="btn btn-primary">Like</a>
