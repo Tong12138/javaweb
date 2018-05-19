@@ -28,10 +28,10 @@
 		connection=DBFactory.getConnection();
       	 String sql="insert into lists (date,completeness,content,username) values(?,?,?,?)";
        	 PreparedStatement pstmt =connection.prepareStatement(sql);
-      	  pstmt.setDate(1, date);
-      	  pstmt.setBoolean(2, false);
-      	  pstmt.setString(3,content);
-      	  pstmt.setString(4,name);
+      	  pstmt.setDate(1, list.getDate());
+      	  pstmt.setBoolean(2, list.getCom());
+      	  pstmt.setString(3,list.getContent());
+      	  pstmt.setString(4,list.getuserName());
       	  pstmt.executeUpdate();
           DBFactory.closeConnection(null, pstmt, null, connection);
        

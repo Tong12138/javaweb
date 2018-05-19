@@ -186,6 +186,8 @@
 						</div>
 						<button class="btn btn-primary btn-lg" data-toggle="modal"
 							data-target="#moodModal">Today's Mood?</button>
+							<div id="mood"> </div>
+							
 					</div>
 
    					 <input type="text" id="city" name="city"/>  
@@ -260,12 +262,12 @@
 					</h3>
 				</div>
 				<div class="modal-body">
-					<label>GO: </label><br> <input type="text" name="textyyt">
+					<label>GO: </label><br> <input type="text" id="mmmood">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">close
 					</button>
-					<button type="button" class="btn btn-primary">submit</button>
+					<button type="button" onclick="getmoods()" class="btn btn-primary">submit</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -350,6 +352,25 @@
 				}
 			}
 			xmlhttp.open("GET", "WeatherServlet?text="+text.value, true);
+			xmlhttp.send(null);
+		}
+		function getmoods()
+		{
+			if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else { // code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+	      
+			var text=document.getElementById("mmmood");
+	//document.getElementById("weather").innerHTML=text.value();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			
+					 document.getElementById("mood").innerHTML=xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET", "addmood.jsp?text="+text.value, true);
 			xmlhttp.send(null);
 		}
 		
