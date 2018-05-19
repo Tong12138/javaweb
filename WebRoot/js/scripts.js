@@ -22,8 +22,15 @@ jQuery(document).ready(function() {
     });
     
     $('.registration-form').on('submit', function(e) {
+    	$(this).find('input[name="form-first-name"],texarea').each(function(){
+    		if(1)
+			{
+			alert('user name has been signed!');
+			}
+    	});
     	
     	$(this).find('input[type="text"], textarea').each(function(){
+    		
     		if( $(this).val() == "" ) {
     			e.preventDefault();
     			$(this).addClass('input-error');
