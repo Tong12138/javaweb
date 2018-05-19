@@ -43,7 +43,7 @@ public class WetherServlet extends HttpServlet {
 	        //设置request编码  
 	        request.setCharacterEncoding("UTF-8");  
 	        //获取查询的城市  
-	        String city = request.getParameter("city");  
+	        String city = request.getParameter("text");  
 	        String info = WeatherReport.getWeather(city);  
 	        request.setAttribute("info", info);  
 	        request.getRequestDispatcher("/WeatherInfo.jsp").forward(request, response);  

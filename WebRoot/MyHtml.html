@@ -188,6 +188,10 @@
 							data-target="#moodModal">Today's Mood?</button>
 					</div>
 
+   					 <input type="text" id="city" name="city"/>  
+    				<button type="button" onclick="getweather()">search</button>  
+
+    				<div id="weather"></div>
 				</div>
 
 
@@ -316,7 +320,7 @@
 				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 	      
-	var text=document.getElementById("textyyt")
+	var text=document.getElementById("textyyt");
 	//	var url = "addlist.jsp?address=" + content;
 //  document.getElementById("result").innerHTML="dsfdsf";
 			xmlhttp.onreadystatechange = function() {
@@ -327,6 +331,28 @@
 			xmlhttp.open("GET", "addlist.jsp?text="+text.value, true);
 			xmlhttp.send(null);
 		}
+		
+		function getweather()
+		{
+		 
+			if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else { // code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+	      
+			var text=document.getElementById("city");
+	//document.getElementById("weather").innerHTML=text.value();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			
+					 document.getElementById("weather").innerHTML=xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET", "WeatherServlet?text="+text.value, true);
+			xmlhttp.send(null);
+		}
+		
 	</script>
 
 
