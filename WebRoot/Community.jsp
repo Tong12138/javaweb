@@ -132,7 +132,7 @@ Connection con=DBFactory.getConnection();
               <p class="card-text"><%=user_essey_contect[1] %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Like</a>
+               <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
             </div>
           </div>
         </div>
@@ -143,7 +143,7 @@ Connection con=DBFactory.getConnection();
               <p class="card-text"><%=user_essey_contect[2] %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Like</a>
+            <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
             </div>
           </div>
         </div>
@@ -154,7 +154,7 @@ Connection con=DBFactory.getConnection();
               <p class="card-text"><%=user_essey_contect[3] %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Like</a>
+              <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ Connection con=DBFactory.getConnection();
               <p class="card-text"><%=user_essey_contect[4] %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Like</a>
+              <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
             </div>
           </div>
         </div>
@@ -176,7 +176,7 @@ Connection con=DBFactory.getConnection();
               <p class="card-text"><%=user_essey_contect[5] %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Like</a>
+              <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
             </div>
           </div>
         </div>
@@ -199,13 +199,11 @@ Connection con=DBFactory.getConnection();
  	  {
  	  
  	     var j = parseInt(name);
- 	     
- 		 url = "addlikes.jsp?id="+note_id[j];
+ 	     //var b=note_id[j];
+ 	//	 url = "addlikes.jsp?id="+note_id[j];
  		 //url="addlikes.jsp?id="+id;
-          window.location.herf = url ;
-           
-          //window.open(addlikes.jsp);
-           
+        	window.location.replace("addlikes.jsp" +"?Id="+note_id[j]); 
+           //window.location.replace("addlikes.jsp");
 	}
  	</script>
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -214,3 +212,4 @@ Connection con=DBFactory.getConnection();
   </body>
 
 </html>
+

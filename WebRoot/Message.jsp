@@ -73,23 +73,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 Connection con=DBFactory.getConnection();
     	
-    	String sql="select * from notes";
+      String name=(String)session.getAttribute("name");
+    	//String sql="select likes.date ,likes.likename,notes.content from likes,notes where likes.idnotes=notes.idnotes and notes.username=\""+name+"\"";
+    	String sql="select likes.date ,likes.likename,notes.content from likes,notes where likes.idnotes=notes.idnotes and notes.username=\"ax\"";
     	Statement statement=con.createStatement();
 	    ResultSet rs=statement.executeQuery(sql);
 	    int size = 3;
 	    String[] user_essey_contect = new String[size];
-		for (int i = 0; i < size; i++) {
-    		 user_essey_contect[i] = rs.getString("content");
-		}
-	    String[] user_liked_name = new String[size];
-		for (int i = 0; i < size; i++) {
-    		 user_liked_name[i] = rs.getString("likename");
-		}
-		java.util.Date[] user_liked_date = new java.util.Date[size];
-		for (int i = 0; i < size; i++) {
-    		 user_liked_date[i] = rs.getDate("date");
-		}
-		
+	     String[] user_liked_name = new String[size];
+	    java.util.Date[] user_liked_date = new java.util.Date[size];
+	    
+	    int i=0;
+	     while(rs.next()&&i<size)
+	    {
+	    user_essey_contect[i] = rs.getString("content");
+	     user_liked_name[i] = rs.getString("likename");
+	      user_liked_date[i] = rs.getDate("date");
+	    i++;
+	    }
+	    
+	   
+    	
+	  
+	   
+	
+	   DBFactory.closeConnection(rs, null, statement, con); 
+     
 	    
      
 
@@ -169,7 +178,7 @@ Connection con=DBFactory.getConnection();
           </div>
         </div>
         <div class="card-footer text-muted">
-           <%=user_liked_date[1].toString() %> by
+           <%=user_liked_date[1].toString() %> by 
           <a href="#"><%=user_liked_name[1] %></a>
         </div>
       </div>
@@ -191,7 +200,7 @@ Connection con=DBFactory.getConnection();
           </div>
         </div>
         <div class="card-footer text-muted">
-            <%=user_liked_date[2].toString() %> by
+             <%=user_liked_date[2].toString() %> by 
           <a href="#"><%=user_liked_name[2] %></a>
         </div>
       </div>

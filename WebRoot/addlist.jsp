@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*,java.sql.*" import="com.bean.*" pageEncoding="UTF-8"%>
 <% 
    String content=request.getParameter("text");
-  // out.print("content");
+ 
     String name=(String)session.getAttribute("name");
        //Connection con=null;
       //con=DBFactory.getConnection();
@@ -34,22 +34,24 @@
       	  pstmt.setString(4,list.getuserName());
       	  pstmt.executeUpdate();
           DBFactory.closeConnection(null, pstmt, null, connection);
+         out.print(content);
        
-       
-        ArrayList<Lists> temp=(ArrayList) session.getAttribute("lists");
-      if(temp==null||temp.size()==0)
-      out.print("shayemeiyou ");
-      else
-      {
-  
-      Iterator it=temp.iterator();
-      for(int i=0;i<temp.size();i++)
-      {
-         Lists lis=(Lists)it.next();
-         out.print(lis.getContent());
+//         ArrayList<Lists> temp=(ArrayList) session.getAttribute("lists");
+//       if(temp==null||temp.size()==0)
+//       out.print("shayemeiyou ");
+//       else
+//       {
+//     //  out.print(temp);
+    
+//        Iterator it=temp.iterator();
+//        for(int i=0;i<temp.size();i++)
+//        {
+//           Lists lis=(Lists)it.next();
+//           out.print(lis.getContent());
+//           out.print("\n");
       
-      }
-       }    
+//        }
+//        }    
 %>
 
 
