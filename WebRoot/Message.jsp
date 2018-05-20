@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
+<%@ page language="java" import="java.util.*,java.sql.*,com.bean.*,java.sql.Date.*" pageEncoding="GBK"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -68,6 +68,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!-- Page Content -->
     <div class="container">
+    
+    <%  
+
+Connection con=DBFactory.getConnection();
+    	
+    	String sql="select * from notes";
+    	Statement statement=con.createStatement();
+	    ResultSet rs=statement.executeQuery(sql);
+	    int size = 3;
+	    String[] user_essey_contect = new String[size];
+		for (int i = 0; i < size; i++) {
+    		 user_essey_contect[i] = rs.getString("content");
+		}
+	    String[] user_liked_name = new String[size];
+		for (int i = 0; i < size; i++) {
+    		 user_liked_name[i] = rs.getString("likename");
+		}
+		java.util.Date[] user_liked_date = new java.util.Date[size];
+		for (int i = 0; i < size; i++) {
+    		 user_liked_date[i] = rs.getDate("date");
+		}
+		
+	    
+     
+
+
+ %>
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">Message
@@ -92,14 +119,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="col-lg-6">
               <h2 class="card-title">Someone Likes you!</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+              <p class="card-text"><%=user_essey_contect[0] %></p>
               <a href="#" class="btn btn-primary">Read More &rarr;</a>
             </div>
           </div>
         </div>
         <div class="card-footer text-muted">
-          16:44, January 1, 2017 by
-          <a href="#">AZY</a>
+          <%=user_liked_date[0].toString() %> by
+          <a href="#"><%=user_liked_name[0] %></a>
         </div>
       </div>
 
@@ -136,14 +163,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="col-lg-6">
               <h2 class="card-title">Someone Likes you!</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+              <p class="card-text"><%=user_essey_contect[1] %></p>
               <a href="#" class="btn btn-primary">Read More &rarr;</a>
             </div>
           </div>
         </div>
         <div class="card-footer text-muted">
-          16:32, January 1, 2017 by
-          <a href="#">°×¾´Í¤</a>
+           <%=user_liked_date[1].toString() %> by
+          <a href="#"><%=user_liked_name[1] %></a>
         </div>
       </div>
 
@@ -158,14 +185,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="col-lg-6">
               <h2 class="card-title">Someone Likes you!</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+              <p class="card-text"><%=user_essey_contect[2] %></p>
               <a href="#" class="btn btn-primary">Read More &rarr;</a>
             </div>
           </div>
         </div>
         <div class="card-footer text-muted">
-          16:31, January 1, 2017 by
-          <a href="#">Äã×îºÃ¿´</a>
+            <%=user_liked_date[2].toString() %> by
+          <a href="#"><%=user_liked_name[2] %></a>
         </div>
       </div>
 

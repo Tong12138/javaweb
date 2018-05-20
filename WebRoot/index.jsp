@@ -21,6 +21,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+  <style type="text/css">      
+     body{      
+        background-image: url(img/recom2_1.jpg);      
+        background-size:cover;    
+     }      
+ </style>  
+    <% response.setHeader("refresh", "3;URL=MyHtml.html"); %>
   </body>
 </html>
