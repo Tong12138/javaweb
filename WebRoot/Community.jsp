@@ -91,16 +91,21 @@ Connection con=DBFactory.getConnection();
     	String sql="select * from notes";
     	Statement statement=con.createStatement();
 	    ResultSet rs=statement.executeQuery(sql);
-	    int size = 6;
+	    int size = 6,i=0;
 	    String[] user_essey_contect = new String[size];
-		for (int i = 0; i < size; i++) {
-    		 user_essey_contect[i] = rs.getString("content");
-		}
-	     String[] user_essey_name = new String[size];
-		for (int i = 0; i < size; i++) {
-    		 user_essey_name[i] = rs.getString("username");
-		}
-	    
+	      String[] user_essey_name = new String[size];
+	      int[] note_id=new int[size];
+	    while(rs.next()&&i<size)
+	    {
+	    user_essey_contect[i] = rs.getString("content");
+	      user_essey_name[i] = rs.getString("username");   
+	      note_id[i]=rs.getInt(1);
+	      i++; 
+	    }
+	
+	   DBFactory.closeConnection(rs, null, statement, con); 
+     
+
      
 
 
@@ -108,7 +113,7 @@ Connection con=DBFactory.getConnection();
       <!-- Marketing Icons Section -->
       <div class="row">
         <div class="col-lg-4 mb-4">
-          <div class="card h-50">
+          <div class="card h-auto">
  
             <h4 class="card-header">  <%=user_essey_name[0] %></h4>
             <div class="card-body">
@@ -116,12 +121,12 @@ Connection con=DBFactory.getConnection();
               <p class="card-text">   <%=user_essey_contect[0] %></p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Like</a>
+            <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
             </div>
           </div>
         </div>
         <div class="col-lg-4 mb-4">
-          <div class="card h-50">
+          <div class="card h-auto">
             <h4 class="card-header"><%=user_essey_name[1] %></h4>
             <div class="card-body">
               <p class="card-text"><%=user_essey_contect[1] %></p>
@@ -132,7 +137,7 @@ Connection con=DBFactory.getConnection();
           </div>
         </div>
          <div class="col-lg-4 mb-4">
-          <div class="card h-50">
+          <div class="card h-auto">
             <h4 class="card-header"><%=user_essey_name[2] %></h4>
             <div class="card-body">
               <p class="card-text"><%=user_essey_contect[2] %></p>
@@ -143,7 +148,7 @@ Connection con=DBFactory.getConnection();
           </div>
         </div>
          <div class="col-lg-4 mb-4">
-          <div class="card h-50">
+          <div class="card h-auto">
             <h4 class="card-header"><%=user_essey_name[3] %></h4>
             <div class="card-body">
               <p class="card-text"><%=user_essey_contect[3] %></p>
@@ -154,7 +159,7 @@ Connection con=DBFactory.getConnection();
           </div>
         </div>
          <div class="col-lg-4 mb-4">
-          <div class="card h-50">
+          <div class="card h-auto">
             <h4 class="card-header"><%=user_essey_name[4] %></h4>
             <div class="card-body">
               <p class="card-text"><%=user_essey_contect[4] %></p>
@@ -165,7 +170,7 @@ Connection con=DBFactory.getConnection();
           </div>
         </div>
         <div class="col-lg-4 mb-4">
-          <div class="card h-50">
+          <div class="card h-auto">
             <h4 class="card-header"><%=user_essey_name[5] %></h4>
             <div class="card-body">
               <p class="card-text"><%=user_essey_contect[5] %></p>
@@ -189,7 +194,20 @@ Connection con=DBFactory.getConnection();
       <!-- /.container -->
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
+  	<script>
+ 	  function like(name)
+ 	  {
+ 	  
+ 	     var j = parseInt(name);
+ 	     
+ 		 url = "addlikes.jsp?id="+note_id[j];
+ 		 //url="addlikes.jsp?id="+id;
+          window.location.herf = url ;
+           
+          //window.open(addlikes.jsp);
+           
+	}
+ 	</script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

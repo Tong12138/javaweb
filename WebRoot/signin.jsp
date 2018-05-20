@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <%  
        int tag=0;
-    	String userName=request.getParameter("form-first-name");
+    	String userName=request.getParameter("name");
     	String password=request.getParameter("password");
               Object a=request.getAttribute("form-first-name");
               
