@@ -123,7 +123,7 @@ Connection con=DBFactory.getConnection();
           <div class="row">
             <div class="col-lg-6">
               <a href="#">
-                <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
+                <img class="img-fluid rounded" src="img/didi.jpg" alt="">
               </a>
             </div>
             <div class="col-lg-6">
@@ -145,7 +145,7 @@ Connection con=DBFactory.getConnection();
           <div class="row">
             <div class="col-lg-6">
               <a href="#">
-                <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
+                <img class="img-fluid rounded" src="img/didi.jpg" alt="">
               </a>
             </div>
             <div class="col-lg-6">
@@ -167,7 +167,7 @@ Connection con=DBFactory.getConnection();
           <div class="row">
             <div class="col-lg-6">
               <a href="#">
-                <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
+                <img class="img-fluid rounded" src="img/didi.jpg" alt="">
               </a>
             </div>
             <div class="col-lg-6">
@@ -189,7 +189,7 @@ Connection con=DBFactory.getConnection();
           <div class="row">
             <div class="col-lg-6">
               <a href="#">
-                <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
+                <img class="img-fluid rounded" src="img/didi.jpg" alt="">
               </a>
             </div>
             <div class="col-lg-6">

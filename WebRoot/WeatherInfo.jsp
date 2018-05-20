@@ -1,4 +1,4 @@
-<%@ page language="java" import="com.bean.*" pageEncoding="UTF-8" contentType="text/html"; charset="GBK"%>    
+<%@ page language="java" import="com.bean.*" pageEncoding="UTF-8" contentType="text/html"%>    
   
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">  
 <html>  
@@ -57,8 +57,8 @@
      <tr align="center">  
      <!-- 天气图标 -->  
      <td>  
-     <img src="tqimgs/a_<%=infos[8]%>" />  
-     <img src="tqimgs/a_<%=infos[9]%>" />  
+     <img src="img/weather/a_<%=infos[8]%>" />  
+     <img src="img/weather/a_<%=infos[9]%>" />  
      </td>  
      </tr>  
      <tr align="center">  
@@ -88,8 +88,8 @@
      <tr align="center">  
      <td>  
      <!-- 第二天的天气图标 -->  
-     <img src="tqimgs/a_<%=infos[15]%>">  
-     <img src="tqimgs/a_<%=infos[16]%>">  
+     <img src="img/weather/a_<%=infos[15]%>">  
+     <img src="img/weather/a_<%=infos[16]%>">  
     </td>  
      </tr>  
        
@@ -120,8 +120,8 @@
      <tr align="center">  
      <td>  
      <!-- 第三天的天气图标 -->  
-     <img src="tqimgs/a_<%=infos[20]%>" />  
-     <img src="tqimgs/a_<%=infos[21]%>" />  
+     <img src="img/weather/a_<%=infos[20]%>" />  
+     <img src="img/weather/a_<%=infos[21]%>" />  
      </td>  
      </tr>  
      <tr align="center">  
@@ -148,7 +148,7 @@
          <table>  
          <tr>  
          <td>  
-         <img src="tqimgs/sun.gif" />  
+         <img src="img/weather/sun.gif" />  
          </td>  
          <td>  
          <font size="-1">  
@@ -211,7 +211,7 @@
            <table>  
          <tr>  
          <td width="50">  
-         <img src="tqimgs/zhishu_01.gif" />  
+         <img src="img/weather/zhishu_01.gif" />  
          </td>  
          <td>  
          <strong>  
@@ -230,7 +230,7 @@
            
          <tr>  
          <td width="50">  
-         <img src="tqimgs/zhishu_20.gif" />  
+         <img src="img/weather/zhishu_20.gif" />  
          </td>  
          <td>  
          <strong>  
@@ -248,7 +248,7 @@
            
          <tr>  
          <td width="50">  
-         <img src="tqimgs/zhishu_03.gif" />  
+         <img src="img/weather/zhishu_03.gif" />  
          </td>  
          <td>  
          <strong>  
@@ -266,7 +266,7 @@
            
          <tr>  
          <td width="50">  
-         <img src="tqimgs/zhishu_22.gif" />  
+         <img src="img/weather/zhishu_22.gif" />  
          </td>  
          <td>  
          <strong>  
@@ -285,7 +285,7 @@
            
          <tr>  
          <td width="50">  
-         <img src="tqimgs/zhishu_07.gif" />  
+         <img src="img/weather/zhishu_07.gif" />  
          </td>  
          <td>  
          <strong>  
@@ -304,7 +304,7 @@
            
          <tr>  
          <td width="50">  
-         <img src="tqimgs/zhishu_31.gif" />  
+         <img src="img/weather/zhishu_31.gif" />  
          </td>  
          <td>  
          <strong>  
@@ -324,7 +324,7 @@
            
          <tr>  
          <td width="50">  
-         <img src="tqimgs/zhishu_11.gif" />  
+         <img src="img/weather/zhishu_11.gif" />  
          </td>  
          <td>  
          <strong>  
