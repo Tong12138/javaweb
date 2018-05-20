@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" import="java.sql.*" import="com.bean.DBFactory" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" import="java.sql.*" import="com.bean.DBFactory" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -67,11 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	  pstmt.executeUpdate();
           DBFactory.closeConnection(rs, pstmt, null, connection);
    %> 
-      <a herf="show.jsp"> display the data</a>
-      <%
-      out.print("add successfully"+"<br>");
-      out.println("user:"+userName+"<br");
-       %>
+   <a href="SignUp.html">注册成功</a>
+   
        <%} %>
 
   </body>

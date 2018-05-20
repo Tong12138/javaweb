@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" import="com.bean.DBFactory" import="java.sql.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" import="com.bean.DBFactory" import="java.sql.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -25,9 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <%  
        int tag=0;
-    	String userName=request.getParameter("form");
+    	String userName=request.getParameter("form1");
     	String password=request.getParameter("password");
-              Object a=request.getAttribute("form-first-name");
               
     	Connection con=DBFactory.getConnection();
     	

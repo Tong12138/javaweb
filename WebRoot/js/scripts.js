@@ -22,10 +22,10 @@ jQuery(document).ready(function() {
     });
     
     $('.registration-form').on('submit', function(e) {
-    	$(this).find('input[name="form-first-name"],texarea').each(function(){
+    	$(this).find('input[name="form-first-name"]').each(function(){
     		if(1)
 			{
-			alert('user name has been signed!');
+			//alert('user name has been signed!');
 			}
     	});
     	
