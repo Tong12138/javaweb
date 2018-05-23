@@ -27,6 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         background-size:cover;    
      }      
  </style>  
-    <% response.setHeader("refresh", "3;URL=MyHtml.html"); %>
+    <% response.setHeader("refresh", "3;URL=SignUp.html"); %>
   </body>
 </html>

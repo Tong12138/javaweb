@@ -184,7 +184,7 @@
 								<ul class="list-unstyled mb-0">
 									<li><a href="Recommendation.html">Recommendation</a></li>
 									<li><a href="Community.jsp">Community</a></li>
-									<li><a href="new_recom1.html">News Today</a></li>
+									<li><a href="recom3.html">News Today</a></li>
 									
 								</ul>
 								<br>
@@ -351,16 +351,21 @@
 //  document.getElementById("result").innerHTML="dsfdsf";
 			xmlhttp.onreadystatechange = function() {
 				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					
+					  
 					  var label = document.createElement('label');  //创建input节点
 					label.innerHTML=xmlhttp.responseText;
-					label.setAttribute(name, "check");
+				
+					///label.setAttribute(name, "check");
+					//alert("hello"); 	
 					var input = document.createElement('input');  //创建input节点
+					
 					input.setAttribute('type', 'checkbox');  //定义类型是checkbox
+					
 					//input.setAttribute('value', xmlhttp.responseText);
-			input.value=xmlhttp.responseText;
+			//input.value=xmlhttp.responseText;
 					var tt = document.createElement("div");
  				   tt.innerHTML = "<br/>";
+ 				
 					 	document.getElementById('list_para').appendChild(tt);
 		        document.getElementById('list_para').appendChild(input); //添加到form中显示
 		         document.getElementById('list_para').appendChild(label); //添加到form中显示
