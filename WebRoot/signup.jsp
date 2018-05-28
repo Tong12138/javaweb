@@ -50,9 +50,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    {
 	     connection.close();
 	     
-	     out.print("name repeat!!!"+"<br>");
+	
 	     %>
-	        <jsp:forward page="SignUp.html"></jsp:forward>
+	       	<script type="text/javascript" language="javascript">
+		alert("用户名重复");
+		window.document.location.href="SignUp.html";
+	</script>	
 	    <%
 	  
 	    }
@@ -67,7 +70,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	  pstmt.executeUpdate();
           DBFactory.closeConnection(rs, pstmt, null, connection);
    %> 
-   <a href="SignUp.html">注册成功</a>
+      	<script type="text/javascript" language="javascript">
+		alert("注册成功！请登录");
+		window.document.location.href="SignUp.html";
+	</script>	
    
        <%} %>
 

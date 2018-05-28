@@ -26,46 +26,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <body>
 
- <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="MyHtml.html">One Day</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="SignUp.html">Sign Up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Message.html">Message</a>
-            </li>
-            
-         
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Calendar
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-                <a class="dropdown-item" href="blog-post.html">Blog Home 3</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Weather
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="MyHtml.jsp">One Day</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="SignUp.html">Sign
+							Up</a></li>
+					<li class="nav-item"><a class="nav-link" href="Message.jsp">Message</a>
+					</li>
+
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Calendar </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+							<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+							<a class="dropdown-item" href="blog-post.html">Blog Home 3</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Weather </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="full-width.html">Full Width
+								Page</a> <a class="dropdown-item" href="sidebar.html">Sidebar
+								Page</a>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
 
     <!-- Page Content -->
     <div class="container">
@@ -87,11 +91,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%  
 
 Connection con=DBFactory.getConnection();
-    	
-    	String sql="select * from notes";
+    	 String name=(String)session.getAttribute("name");
+    	String sql="select * from notes where username!= \""+name+"\"";
     	Statement statement=con.createStatement();
 	    ResultSet rs=statement.executeQuery(sql);
-	    int size = 6,i=0;
+	    int size = 20,i=0;
 	    String[] user_essey_contect = new String[size];
 	      String[] user_essey_name = new String[size];
 	      int[] note_id=new int[size];
@@ -100,7 +104,29 @@ Connection con=DBFactory.getConnection();
 	    user_essey_contect[i] = rs.getString("content");
 	      user_essey_name[i] = rs.getString("username");   
 	      note_id[i]=rs.getInt(1);
+	      
+	        %>    
+	        <form action='addlikes.jsp?bd=<%=note_id[i]%>' method="post">
+	          <div class="col-lg-4 mb-4">
+          <div class="card h-auto">
+            
+            <h4  class="card-header" >  <%=user_essey_name[i] %></h4>
+            <div class="card-body">
+              <p  class="card-text">   <%=user_essey_contect[i] %></p>
+            </div>
+            <div class="card-footer">
+          
+            <input onclick="like(this)" type="submit"  class="btn btn-primary" value='Like' >
+            
+            </div>
+          </div>
+        </div>
+	        </form>	
+	<%       
+	      
 	      i++; 
+	
+	      
 	    }
 	
 	   DBFactory.closeConnection(rs, null, statement, con); 
@@ -109,82 +135,7 @@ Connection con=DBFactory.getConnection();
      
 
 
- %>
-      <!-- Marketing Icons Section -->
-      <div class="row">
-        <div class="col-lg-4 mb-4">
-          <div class="card h-auto">
- 
-            <h4 class="card-header">  <%=user_essey_name[0] %></h4>
-            <div class="card-body">
-         
-              <p class="card-text">   <%=user_essey_contect[0] %></p>
-            </div>
-            <div class="card-footer">
-            <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-auto">
-            <h4 class="card-header"><%=user_essey_name[1] %></h4>
-            <div class="card-body">
-              <p class="card-text"><%=user_essey_contect[1] %></p>
-            </div>
-            <div class="card-footer">
-               <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
-            </div>
-          </div>
-        </div>
-         <div class="col-lg-4 mb-4">
-          <div class="card h-auto">
-            <h4 class="card-header"><%=user_essey_name[2] %></h4>
-            <div class="card-body">
-              <p class="card-text"><%=user_essey_contect[2] %></p>
-            </div>
-            <div class="card-footer">
-            <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
-            </div>
-          </div>
-        </div>
-         <div class="col-lg-4 mb-4">
-          <div class="card h-auto">
-            <h4 class="card-header"><%=user_essey_name[3] %></h4>
-            <div class="card-body">
-              <p class="card-text"><%=user_essey_contect[3] %></p>
-            </div>
-            <div class="card-footer">
-              <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
-            </div>
-          </div>
-        </div>
-         <div class="col-lg-4 mb-4">
-          <div class="card h-auto">
-            <h4 class="card-header"><%=user_essey_name[4] %></h4>
-            <div class="card-body">
-              <p class="card-text"><%=user_essey_contect[4] %></p>
-            </div>
-            <div class="card-footer">
-              <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-auto">
-            <h4 class="card-header"><%=user_essey_name[5] %></h4>
-            <div class="card-body">
-              <p class="card-text"><%=user_essey_contect[5] %></p>
-            </div>
-            <div class="card-footer">
-              <button name="0" onclick="like(this.name)" class="btn btn-primary">Like</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
-
-    </div>
-    <!-- /.container -->
+   %>
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -195,15 +146,11 @@ Connection con=DBFactory.getConnection();
     </footer>
 
   	<script>
- 	  function like(name)
+ 	  function like()
  	  {
+ 	  alert('jfsk');
  	  
- 	     var j = parseInt(name);
- 	     //var b=note_id[j];
- 	//	 url = "addlikes.jsp?id="+note_id[j];
- 		 //url="addlikes.jsp?id="+id;
-        	window.location.replace("addlikes.jsp" +"?Id="+note_id[j]); 
-           //window.location.replace("addlikes.jsp");
+ 	this.value="liked";
 	}
  	</script>
     <script src="vendor/jquery/jquery.min.js"></script>

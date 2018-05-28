@@ -50,19 +50,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   
 	     session.setAttribute("name",userName);
 	     session.removeAttribute("lists");
-	     out.print("log successful"+"<br>"); 
-	    out.print((String)session.getAttribute("name"));
+	   
 	      %>
-	      <jsp:forward page="MyHtml.html"></jsp:forward>
+	   	<script type="text/javascript" language="javascript">
+		alert("登录成功");
+		window.document.location.href="MyHtml.jsp";
+	</script>	
 <%  
 	    
 	  
  	    }
    else
 	    {
-	     out.print("log fail"+"<br>");
+	
 	     %>
-	      <jsp:forward page="SignUp.html"></jsp:forward>
+	   	<script type="text/javascript" language="javascript">
+		alert("登录失败");
+		window.document.location.href="SignUp.html";
+	</script>	
+	      
 <% 
  } 
     	DBFactory.closeConnection(rs, null, statement, con);

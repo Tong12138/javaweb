@@ -16,8 +16,8 @@ jQuery(document).ready(function() {
 	
 	$(function(){
 		
-	    var s = $("input[name='check']");
-	    s.each(function(i) {
+	    //var s = $("input[name='check']");
+	    $("#check").each(function(i) {
  	         // alert('cnm!');
 	            $(this).click(function(){
 	                if(this.checked==true){

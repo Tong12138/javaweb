@@ -1,10 +1,12 @@
 <%@ page language="java" import="java.util.*,java.sql.*,com.bean.*" pageEncoding="UTF-8"%>
 <%
- //int id=Integer.parseInt(request.getParameter("Id"));
+String id=request.getParameter("bd");
+ //int id=Integer.parseInt();
  %>
 
  <%
-     int id=4; 
+ //    int id=4; 
+ int idd=Integer.parseInt(id);
     String name=(String)session.getAttribute("name");
        java.sql.Date date=new java.sql.Date(new java.util.Date().getTime());
        //写入到数据库中
@@ -12,11 +14,12 @@
 		connection=DBFactory.getConnection();
       	 String sql="insert into likes (idnotes,likename,date) values(?,?,?)";
        	 PreparedStatement pstmt =connection.prepareStatement(sql);
-      	  pstmt.setInt(1,id);
+      	  pstmt.setInt(1,idd);
       	  pstmt.setString(2,name);
      	  pstmt.setDate(3, date);
       	  pstmt.executeUpdate();
           DBFactory.closeConnection(null, pstmt, null, connection);
        
 %>
+<jsp:forward page="Community.jsp"></jsp:forward>
 

@@ -1,3 +1,9 @@
+<%@ page language="java" import="java.util.*,java.sql.*,com.bean.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 
 
 <!DOCTYPE html>
@@ -40,7 +46,7 @@
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="MyHtml.html">One Day</a>
+			<a class="navbar-brand" href="MyHtml.jsp">One Day</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -146,28 +152,70 @@
 				</h1>
 
 				<!-- TODO list -->
-				<div class="card mb-4">
+				
+			  <div class="card mb-4">
 					<div class="card-body">
 						<h2 class="card-title">Todo List</h2>
-						<br>
+						<br>	
+				
+				<%  
+       java.sql.Date date=new java.sql.Date(new java.util.Date().getTime());
+       String a=date.toString();
+       
+          Connection con=DBFactory.getConnection();
+    	 String name=(String)session.getAttribute("name");
+    	String sql="select * from lists where username= \""+name+"\" and date= \""+a+"\"";
+    	Statement statement=con.createStatement();
+	    ResultSet rs=statement.executeQuery(sql);
+	    int size = 20,i=0;
+	    String[] listcontent = new String[size];
+	     
+	    while(rs.next()&&i<size)
+	    {
+	    listcontent[i] = rs.getString("content");
+	    %>    
+	    
 						<p id="list_para">
-							<input type="checkbox" name="check" id="num1" value=" Do my homework" ><label> Do my
-								homework</label> <br>
-							<br> <input type="checkbox" name="check" id="num2" value="English Words" ><label>
-								English Words</label> <br>
-							<br> <input type="checkbox" name="check" id="num3" value="高数走一波" ><label>
-								高数走一波</label> <br>
-							<br> <input type="checkbox" name="check" id="num4" value="王者农药玩了吗？" ><label>
-								王者农药玩了吗？</label>
+							<input type="checkbox" name="check" id="num1" value=" Do my homework" >
+							<label><%=listcontent[i] %></label> <br>
+							
 						</p>
 						
-						<button class="btn btn-primary btn-lg" data-toggle="modal"
+					
+	<%       
+	      
+	      i++; 
+	
+	      
+	    }
+	
+	   DBFactory.closeConnection(rs, null, statement, con); 
+     
+
+     
+
+
+   %>
+				
+				
+	<button class="btn btn-primary btn-lg" data-toggle="modal"
 							data-target="#myModal">Add New</button>
+
 
 
 					</div>
 
 				</div>
+
+
+
+
+
+
+
+
+
+
 
 
 			</div>
@@ -357,20 +405,35 @@
 					  var label = document.createElement('label');  //创建input节点
 					label.innerHTML=xmlhttp.responseText;
 				
-					label.setAttribute('name', 'check');
-					alert("hello"); 	
+					
+					
 					var input = document.createElement('input');  //创建input节点
 					
 					input.setAttribute('type', 'checkbox');  //定义类型是checkbox
-					
+					input.setAttribute('name', 'check');
+					//	alert("xmlhttp.responseText"); 
 					//input.setAttribute('value', xmlhttp.responseText);
-					//input.value=xmlhttp.responseText;
+					input.value=xmlhttp.responseText;
+					
+				
+						alert(input.name); 
 					var tt = document.createElement("div");
  				   tt.innerHTML = "<br/>";
  				
 					 	document.getElementById('list_para').appendChild(tt);
 		        document.getElementById('list_para').appendChild(input); //添加到form中显示
+		        $("body").on('click','#check',function(){
+	                if(this.checked==true){
+	                	alert(this.value);
+	                //	window.location.href("changecom.jsp" +"?Id="+this.value);
+	                	window.location.href="changecom.jsp" +"?Id="+this.value;
+	                }
+	             });
 		         document.getElementById('list_para').appendChild(label); //添加到form中显示
+		         	
+ 	         // alert('cnm!');
+	            
+	        
 		// document.getElementById("result").innerHTML=;
 					 }
 					
