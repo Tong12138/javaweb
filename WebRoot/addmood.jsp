@@ -48,7 +48,8 @@
       {
        //  out.print(temp.size());
          notes lis=(notes)it.next();
-         out.print(lis.getContent());
+         out.print(lis.getContent()+"<br>");
+        
       
       }
        }    

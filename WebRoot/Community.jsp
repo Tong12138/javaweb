@@ -108,7 +108,7 @@ Connection con=DBFactory.getConnection();
 	        %>    
 	        <form action='addlikes.jsp?bd=<%=note_id[i]%>' method="post">
 	          <div class="col-lg-4 mb-4">
-          <div class="card h-auto">
+          <div class="card h-auto w-10000">
             
             <h4  class="card-header" >  <%=user_essey_name[i] %></h4>
             <div class="card-body">
@@ -116,7 +116,7 @@ Connection con=DBFactory.getConnection();
             </div>
             <div class="card-footer">
           
-            <input onclick="like(this)" type="submit"  class="btn btn-primary" value='Like' >
+            <input onclick="like(this)" type="submit"  class="btn btn-primary" value='Like' id='likebox'>
             
             </div>
           </div>
@@ -146,12 +146,19 @@ Connection con=DBFactory.getConnection();
     </footer>
 
   	<script>
+  	
+  	
  	  function like()
  	  {
- 	  alert('jfsk');
+ 	  //alert('hello!');
+ 	  document.getElementById("likebox").value='liked';
+ 	  var a=document.getElementById("likebox").value;
+ 	  alert(a);
  	  
- 	this.value="liked";
+ 	//this.value="liked";
 	}
+	
+	
  	</script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

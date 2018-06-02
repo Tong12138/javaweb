@@ -10,7 +10,8 @@ jQuery(document).ready(function() {
 	
     $('#contactForm').on('submit', function(e) {
   	
-    	alert('cnm!');
+    	//alert('succeed!');
+    	alert("succeed");
   	$(this).find('textarea').each(function(){
   		
   		if( $(this).val() == "" ) {

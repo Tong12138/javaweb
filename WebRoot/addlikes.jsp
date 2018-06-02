@@ -21,5 +21,8 @@ String id=request.getParameter("bd");
           DBFactory.closeConnection(null, pstmt, null, connection);
        
 %>
-<jsp:forward page="Community.jsp"></jsp:forward>
+		
 
+<script type="text/javascript">
+ window.history.go(-1);
+</script>

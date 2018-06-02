@@ -31,7 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/add_list.js"></script>
 
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+</script>
 <script
 	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
@@ -41,6 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
+
+
+
 
 	<!-- Navigation -->
 	<nav
@@ -157,6 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="card-body">
 						<h2 class="card-title">Todo List</h2>
 						<br>	
+							<p id="list_para">
 				
 				<%  
        java.sql.Date date=new java.sql.Date(new java.util.Date().getTime());
@@ -168,22 +173,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	Statement statement=con.createStatement();
 	    ResultSet rs=statement.executeQuery(sql);
 	    int size = 20,i=0;
-	    String[] listcontent = new String[size];
-	     
+	    String[] listcontent = new String[size]; 
 	    while(rs.next()&&i<size)
 	    {
-	    listcontent[i] = rs.getString("content");
-	    %>    
 	    
-						<p id="list_para">
-							<input type="checkbox" name="check" id="num1" value=" Do my homework" >
-							<label><%=listcontent[i] %></label> <br>
+	    listcontent[i] = rs.getString("content");
+	    boolean b=rs.getBoolean(3);
+	    if(b==true)
+	    {
+	    %>    
+	    		 <input type="checkbox" checked  name="check" id="num" >
+					
+								<label for="num"><%=listcontent[i] %></label> <br>
+		<%
+		}
+		else
+		{
+		 %>
+		 <input type="checkbox"  name="check" id="num"  >
+							<label for="num"><%=listcontent[i] %></label> <br>
 							
-						</p>
+						
 						
 					
 	<%       
-	      
+	     } 
 	      i++; 
 	
 	      
@@ -197,7 +211,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
    %>
 				
-				
+		</p>		
 	<button class="btn btn-primary btn-lg" data-toggle="modal"
 							data-target="#myModal">Add New</button>
 
@@ -414,6 +428,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					//	alert("xmlhttp.responseText"); 
 					//input.setAttribute('value', xmlhttp.responseText);
 					input.value=xmlhttp.responseText;
+					//input.setAttribute(')
 					
 				
 						alert(input.name); 
@@ -422,14 +437,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  				
 					 	document.getElementById('list_para').appendChild(tt);
 		        document.getElementById('list_para').appendChild(input); //添加到form中显示
-		        $("body").on('click','#check',function(){
-	                if(this.checked==true){
-	                	alert(this.value);
-	                //	window.location.href("changecom.jsp" +"?Id="+this.value);
-	                	window.location.href="changecom.jsp" +"?Id="+this.value;
-	                }
-	             });
+		        
 		         document.getElementById('list_para').appendChild(label); //添加到form中显示
+		         
 		         	
  	         // alert('cnm!');
 	            
@@ -442,6 +452,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			xmlhttp.open("GET", "addlist.jsp?text="+text.value, true);
 			xmlhttp.send(null);
+		location.reload();
 		}
 		
 		function getweather()

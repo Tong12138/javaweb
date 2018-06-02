@@ -3,10 +3,18 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String content=request.getParameter("Id");
+String tag=request.getParameter("tag");
+java.sql.Date date=new java.sql.Date(new java.util.Date().getTime());
+
 //String content=" Do my homework";
   Connection connection=null;
 		connection=DBFactory.getConnection();
-      	 String sql="UPDATE lists SET completeness=true WHERE content=\""+content+"\"";
+		String sql =null;
+		if(tag.equals("1"))
+	
+      	  sql="UPDATE lists SET completeness=true WHERE content=\""+content+"\" and date =\""+ date+"\"";
+      	  else
+      	    sql="UPDATE lists SET completeness=false WHERE content=\""+content+"\" and date =\""+ date+"\"";
       	// String sql="UPDATE lists SET completeness=true WHERE content=\" D//o my homework\"";
        	 PreparedStatement pstmt =connection.prepareStatement(sql);
        	 	  pstmt.executeUpdate();
@@ -15,4 +23,6 @@ String content=request.getParameter("Id");
 //         out.print(content);
 
 %>
-<a href="javascript:history.back(-1)">添加成功</a>
+<script>
+window.document.location.href="MyHtml.jsp";
+</script>
